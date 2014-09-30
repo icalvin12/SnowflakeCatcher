@@ -1,7 +1,23 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class SnowflakeCatcher extends PApplet {
+
 int numFlakes = 200;
 SnowFlake[] snow = new SnowFlake[numFlakes];
 
-void setup()
+public void setup()
 {
   background(0);
   rectMode(CENTER);
@@ -11,7 +27,7 @@ void setup()
     snow[i] = new SnowFlake();
   }
 }
-void draw()
+public void draw()
 {
   fill(0);
   rect(250, 750,500 , 250);
@@ -24,7 +40,7 @@ void draw()
     snow[i].lookDown();
   }
 }
-void mouseDragged()
+public void mouseDragged()
 {
   if(mouseButton == LEFT)
   {
@@ -48,13 +64,13 @@ class SnowFlake
     changeY = 3;
     changeX = 1;
   }
-  void show()
+  public void show()
   {
     noStroke();
     fill(255);
     ellipse(x,y,10,10);
   }
-  void lookDown()
+  public void lookDown()
   {
     if(y>5 && y <490)
     {
@@ -69,17 +85,17 @@ class SnowFlake
       }
     }
   }
-  void erase()
+  public void erase()
   {
     fill(0);
     ellipse(x,y-changeY,12,12);
   }
-  void move()
+  public void move()
   {
     y = y + changeY;
     x = x + changeX;
   }
-  void wrap()
+  public void wrap()
   {
     if(y>500)
     {
@@ -92,3 +108,12 @@ class SnowFlake
 }
 
 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "SnowflakeCatcher" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
