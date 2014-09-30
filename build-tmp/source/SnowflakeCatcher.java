@@ -56,13 +56,12 @@ public void mouseDragged()
 
 class SnowFlake
 {
-  int x,y,changeY,changeX;
+  int x,y,changeY;
   SnowFlake()
   {
     x = (int)(Math.random() * 500);
     y = -(int)(Math.random() * 1000);
     changeY = 3;
-    changeX = 1;
   }
   public void show()
   {
@@ -77,7 +76,6 @@ class SnowFlake
       if(get(x,y+7) != color(0,0,0))
       {
         changeY = 0;
-        changeX = 0;
       }
       else 
       {
@@ -93,7 +91,6 @@ class SnowFlake
   public void move()
   {
     y = y + changeY;
-    x = x + changeX;
   }
   public void wrap()
   {
